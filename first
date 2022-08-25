@@ -1,0 +1,39 @@
+const addWeirdStuff = (arrayOne, arrayTwo) => {
+  let sumOfEvensInArrayTwo = 0
+  let sumOfOddsInArrayTwo = 0
+  let addOneToArrayOne = 0 // if an element of arrayTwo is over 20
+  for (const itemTwo of arrayTwo) {
+    if (itemTwo % 2 === 0) {
+      sumOfEvensInArrayTwo += itemTwo
+    }
+    if (itemTwo % 2 === 1) {
+      sumOfOddsInArrayTwo += itemTwo
+    }
+    if (itemTwo > 20) {
+      addOneToArrayOne = 1
+    }
+  }
+  const outputArray = []
+  for (const itemOne of arrayOne) {
+    if (itemOne < 10) {
+      outputArray.push(itemOne + sumOfOddsInArrayTwo + addOneToArrayOne)
+    }
+    if (itemOne >= 10) {
+      outputArray.push(itemOne + sumOfEvensInArrayTwo + addOneToArrayOne)
+    }
+  }
+  return outputArray
+}
+
+console.log(
+  `[${addWeirdStuff(
+    [1, 3, 5, 17, 15],
+    [1, 2, 3, 4, 5]
+  )}] should equal [10,12,14,23,21]`
+)
+console.log(
+  `[${addWeirdStuff(
+    [1, 3, 5, 17, 15, 1],
+    [1, 2, 3, 4, 5, 22]
+  )}] should equal [11,13,15,46,44,11]`
+)
